@@ -7,17 +7,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class ParseLine {
+public final class ParseLine {
 
 
     // constant
 
     @NotNull
-    private final static String PATH = "/Users/daniel/Dev/Code/local/DataStax-Spark-ETL/DataStax-Spark-ETL" +
-            "/src/main/resources/flights_from_pg_top100.csv";
+    public final static String PATH_LEAN = "./src/main/resources/flights_from_pg_top100.csv";
+    public final static String PATH_WIDE = "./src/main/resources/flightNum_from_pg_top100.csv";
 
 
     // static methods
@@ -46,7 +45,7 @@ public class ParseLine {
         CsvReader csvReader = null;
 
         try {
-            csvReader = new CsvReader(new FileReader(PATH));
+            csvReader = new CsvReader(new FileReader(PATH_LEAN));
         } catch (final FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -75,7 +74,7 @@ public class ParseLine {
     }
 
     @NotNull
-    public static String toText(@NotNull List<String[]> strings) {
+    public static String toText(@NotNull final List<String[]> strings) {
 
         final StringBuilder res = new StringBuilder();
 
